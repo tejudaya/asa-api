@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Header, HTTPException, Depends, Query
 from pydantic import BaseModel
 import os
-from typing import Optional, List
+from typing import Optional, List, Union
 from fastapi.middleware.cors import CORSMiddleware
 
 from asa_api import get_products_for_user_intent
@@ -34,29 +34,29 @@ class Product(BaseModel):
     matched_terms: Optional[List[str]] = None
     is_slotted: Optional[bool] = None
     labels: Optional[dict] = None
-    variation_id: Optional[str] = None
+    variation_id: Optional[Union[str, int]] = None
     description: Optional[str] = None
     product_blurb: Optional[str] = None
     product_info: Optional[str] = None
-    lowest_price: Optional[float] = None
-    highest_price: Optional[float] = None
-    sale_price_min: Optional[float] = None
-    sale_price_max: Optional[float] = None
-    regular_price_min: Optional[float] = None
-    regular_price_max: Optional[float] = None
+    lowest_price: Optional[Union[float, str]] = None
+    highest_price: Optional[Union[float, str]] = None
+    sale_price_min: Optional[Union[float, str]] = None
+    sale_price_max: Optional[Union[float, str]] = None
+    regular_price_min: Optional[Union[float, str]] = None
+    regular_price_max: Optional[Union[float, str]] = None
     product_price_type: Optional[str] = None
-    swatch_prices: Optional[dict] = None
-    min_avl_now_pl: Optional[str] = None
-    leader_sku: Optional[str] = None
+    swatch_prices: Optional[Union[dict, str]] = None
+    min_avl_now_pl: Optional[Union[str, int]] = None
+    leader_sku: Optional[Union[str, int]] = None
     leader_sku_image: Optional[str] = None
     thumb_image: Optional[str] = None
     thumb_image_parent: Optional[str] = None
     image_override: Optional[str] = None
-    alt_images: Optional[List[str]] = None
-    hover_images: Optional[List[str]] = None
-    image_roll_overs: Optional[List[str]] = None
-    swatches_display: Optional[dict] = None
-    group_ids: Optional[List[str]] = None
+    alt_images: Optional[Union[List[str], dict, str]] = None
+    hover_images: Optional[Union[List[str], dict, str]] = None
+    image_roll_overs: Optional[Union[List[str], dict, str]] = None
+    swatches_display: Optional[Union[dict, str]] = None
+    group_ids: Optional[List[Union[str, int]]] = None
     facets: Optional[List[dict]] = None
     flags: Optional[List[str]] = None
     pip_type: Optional[str] = None
